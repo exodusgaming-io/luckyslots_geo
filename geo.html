@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex">
+  <title>Access restricted — Lucky Slots</title>
+
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Roboto+Condensed:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <main class="geo">
+    <div class="geo__logo">
+      <img src="images/logo.svg" width="149" height="36" alt="Lucky Slots">
+    </div>
+
+    <h1 class="geo__title">Access restricted</h1>
+
+    <p class="geo__lede"><span><strong>Lucky Slots</strong> is currently unavailable in your region due to local regulations.</span></p>
+
+    <section class="geo__block">
+      <img src="images/support.svg" width="30" height="30" alt="">
+      <div class="geo__block-body">
+        <p class="geo__block-title">Think this is a mistake?</p>
+        <p class="geo__block-text">Don’t worry, feel free to reach out to our support team using one of the options below.</p>
+      </div>
+    </section>
+
+    <div class="geo__actions">
+      <a class="geo__btn" id="contact-support" href="mailto:support@luckyslots.us" target="_top">Contact support</a>
+      <p class="geo__ref" id="reference" hidden>Reference: <span id="reference-id"></span></p>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      // The Cloudflare block page frames this page and passes the CF-Ray it answered with.
+      var ref = new URLSearchParams(window.location.search).get('ref');
+      if (ref) {
+        document.getElementById('reference-id').textContent = ref;
+        document.getElementById('reference').hidden = false;
+      }
+
+      // Framed: the parent owns Comm100 and the mailto fallback.
+      document.getElementById('contact-support').addEventListener('click', function (event) {
+        if (window.parent && window.parent !== window) {
+          event.preventDefault();
+          window.parent.postMessage('openLiveChat', '*');
+        }
+      });
+    })();
+  </script>
+</body>
+
+</html>
