@@ -95,6 +95,13 @@ body {
   gap: 12px;
   padding: 16px 8px;
   border-radius: 10px;
+}
+
+.geo__block[hidden] {
+  display: none;
+}
+
+.geo__block--panel {
   background: var(--block);
 }
 

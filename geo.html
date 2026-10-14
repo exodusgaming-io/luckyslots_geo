@@ -25,6 +25,14 @@
 
     <p class="geo__lede"><span><strong>Lucky Slots</strong> is currently unavailable in your region due to local regulations.</span></p>
 
+    <section class="geo__block geo__block--panel" id="regions" hidden>
+      <img src="images/lock.svg" width="30" height="30" alt="">
+      <div class="geo__block-body">
+        <p class="geo__block-title">Restricted regions currently include:</p>
+        <p class="geo__block-text" id="regions-list"></p>
+      </div>
+    </section>
+
     <section class="geo__block">
       <img src="images/support.svg" width="30" height="30" alt="">
       <div class="geo__block-body">
@@ -41,11 +49,20 @@
 
   <script>
     (function () {
-      // The Cloudflare block page frames this page and passes the CF-Ray it answered with.
-      var ref = new URLSearchParams(window.location.search).get('ref');
+      // The Cloudflare block page frames this page and passes the CF-Ray it answered with,
+      // plus the restricted regions when the block was a regional one.
+      var params = new URLSearchParams(window.location.search);
+
+      var ref = params.get('ref');
       if (ref) {
         document.getElementById('reference-id').textContent = ref;
         document.getElementById('reference').hidden = false;
+      }
+
+      var regions = params.get('regions');
+      if (regions) {
+        document.getElementById('regions-list').textContent = regions;
+        document.getElementById('regions').hidden = false;
       }
 
       // Framed: the parent owns Comm100 and the mailto fallback.
